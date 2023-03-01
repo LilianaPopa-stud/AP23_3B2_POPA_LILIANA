@@ -55,5 +55,12 @@ public class Main {
                 concatenation.append(matrix[i][j]);
             System.out.println(concatenation);
         }
+        for (int i = 0; i<n; i++)
+        {
+            StringBuilder concatenation = new StringBuilder();
+            for (int j=0; j<n; j++)
+                concatenation.append(matrix[j][i]);
+            System.out.println(concatenation);
+        }
     }
 }
