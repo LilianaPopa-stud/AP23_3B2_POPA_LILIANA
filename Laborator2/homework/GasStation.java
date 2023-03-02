@@ -1,10 +1,8 @@
 package homework;
-
 /**
- * @author Popa Liliana
- * GasStation is a subclass of Location
- * It represents a type of location
- * Additional attributes: price
+ * GasStation is a subclass of Location.
+ * It represents a type of location.
+ * Additional attributes: price.
  * @author Popa Liliana
  */
 

@@ -1,7 +1,7 @@
 package homework;
 /**
- * @author Popa Liliana
- * Country is a subclass of Road
+ * Country is a subclass of Road.
+ *  * @author Popa Liliana
  */
 public class Country extends Road{
     public Country(double length, int speedLimit, Location c1, Location c2) {

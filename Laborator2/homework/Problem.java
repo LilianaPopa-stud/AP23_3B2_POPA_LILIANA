@@ -1,5 +1,11 @@
 package homework;
 
+/**
+ * Problem is a class that contains the locations and roads of a problem.
+ * It also contains the number of locations and roads.
+ * @author Popa Liliana
+ */
+
 public class Problem {
     private Location[] locations;
     private Road[] roads;
@@ -12,6 +18,13 @@ public class Problem {
         nrLocations = 0;
         nrRoads = 0;
     }
+    /**
+     * Constructor with parameters
+     * @param locations the locations of the problem
+     * @param roads the roads of the problem
+     * @param nrLocations the number of locations
+     * @param nrRoads  the number of roads
+     */
     public Problem(Location[] locations, Road[] roads, int nrLocations, int nrRoads) {
         this.locations = locations;
         this.roads = roads;
