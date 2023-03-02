@@ -4,26 +4,10 @@ package compulsory;
  * @author Popa Liliana
  */
 public class Location {
-    /**
-     * This is the name of the location
-     */
     private String name;
-    /**
-     * This is the x coordinate of the location
-     */
     private double x;
-    /**
-     * This is the y coordinate of the location
-     */
     private double y;
-    /**
-     * This is the type of the location
-     */
     private LocationType type;
-
-    /**
-     * This is the default constructor of the class
-     */
     public Location() {
     }
 
