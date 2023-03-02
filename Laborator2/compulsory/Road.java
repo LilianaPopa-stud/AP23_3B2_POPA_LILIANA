@@ -4,22 +4,10 @@ package compulsory;
  * @author Popa Liliana
  */
 public class Road {
-    /**
-     * This is the length of the road
-     */
     private double length;
-    /**
-     * This is the speed limit of the road
-     */
     private int speedLimit;
-    /**
-     * This is the type of the road
-     */
     private  RoadType type;
-
-    /**
-     * This is the constructor of the class
-     */
+    
     public Road() {
     }
 
