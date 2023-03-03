@@ -34,7 +34,10 @@ public class Road {
     }
 
     public void setLength(double length) {
-        this.length = length;
+        if (length < sqrt(pow(c1.getX() - c2.getX(), 2) + pow(c1.getY() - c2.getY(), 2))) {
+            throw new IllegalArgumentException("The length of the road is smaller than the distance between the two locations");
+        }
+        else this.length = length;
     }
 
     public int getSpeedLimit() {
