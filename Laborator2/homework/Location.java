@@ -9,6 +9,7 @@ public class Location {
     private String name;
     private double x;
     private double y;
+    private int id;
 
     public Location() {
     }
@@ -30,6 +31,14 @@ public class Location {
         this.name = name;
         this.x = x;
         this.y = y;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -70,16 +79,17 @@ public class Location {
      * @param o This is the object to be compared
      * @return true if the objects are equal, false otherwise
      */
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Location location = (Location) o;
-        return Double.compare(location.x, x) == 0 && Double.compare(location.y, y) == 0 && name.equals(location.name);
+        return Double.compare(location.x, x) == 0 && Double.compare(location.y, y) == 0 && id == location.id && Objects.equals(name, location.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, x, y);
+        return Objects.hash(name, x, y, id);
     }
 }

@@ -54,14 +54,20 @@ public class Problem {
     public int getNrLocations() {
         return nrLocations;
     }
-    public void setNrLocations(int nrLocations) {
-        this.nrLocations = nrLocations;
-    }
     public int getNrRoads() {
         return nrRoads;
     }
     public void setNrRoads(int nrRoads) {
         this.nrRoads = nrRoads;
+    }
+
+    /**
+     * This method sets the id of each location
+     */
+    public void setIds(){
+        for (int i = 0; i < nrLocations; i++) {
+            locations[i].setId(i);
+        }
     }
 
 }

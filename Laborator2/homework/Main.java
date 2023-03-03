@@ -1,4 +1,8 @@
 package homework;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * This is the Main class of the application.
  * @author Popa Liliana
@@ -14,7 +18,7 @@ public class Main{
         Problem problem = new Problem();
         City iasi = new City("Iasi", 20.5, 28.1, 1000000);
         City chisinau = new City("Chisinau", 40, 33.2, 500000);
-        Airport otopeni = new Airport("Otopeni", 10.0, 90, 2);
+        Airport otopeni = new Airport("Otopeni", 10.0, 90,2);
         Airport chisinauAirport = new Airport("Chisinau Airport", 44, 40, 1);
         GasStation lukoil = new GasStation("Lukoil", 30, 40, 5.5);
         problem.addLocation(iasi);
@@ -30,6 +34,7 @@ public class Main{
         problem.addRoad(new Express(120,120,iasi,chisinauAirport));
         Main app = new Main();
         app.checkInstance(problem);
+        app.canReach(chisinau, lukoil, problem);
 
     }
 
@@ -67,5 +72,42 @@ public class Main{
         }
         System.out.println("The instance is valid");
 
+    }
+    /**
+     * This method checks if there is a path from a source location to a destination location
+     * @param c1 This is the source location
+     * @param c2 This is the destination location
+     * @param pb This is the instance of the problem
+     */
+    public void canReach(Location c1, Location c2, Problem pb){
+        int [][] adjacencyMatrix = new int[pb.getNrLocations()][pb.getNrLocations()];
+        Road [] roads = pb.getRoads();
+        pb.setIds();
+        for (int i = 0; i < pb.getNrRoads(); i++)
+        {
+            adjacencyMatrix[roads[i].getC1().getId()][roads[i].getC2().getId()] = 1;
+        }
+        // bfs algorithm
+        boolean[] visited = new boolean[pb.getNrLocations()];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(c1.getId());
+        visited[c1.getId()] = true;
+        while (!queue.isEmpty())
+        {
+            int s = queue.remove();
+            for (int i = 0; i < pb.getNrLocations(); i++)
+            {
+                if (adjacencyMatrix[s][i] == 1 && !visited[i])
+                {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        if(visited[c2.getId()]){
+            System.out.println("There is a path between the two locations");
+            return;
+        }
+        System.out.println("There is no path between the two locations");
     }
 }
