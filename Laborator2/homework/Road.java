@@ -14,6 +14,7 @@ public class Road {
     private int speedLimit;
     Location c1;
     Location c2;
+    private int nrRoads;
     /**
     * This is the default constructor of the class
      */
@@ -37,6 +38,7 @@ public class Road {
             this.speedLimit = speedLimit;
             this.c1 = c1;
             this.c2 = c2;
+            this.nrRoads++;
         }
     }
 

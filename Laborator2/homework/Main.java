@@ -27,14 +27,27 @@ public class Main{
         problem.addLocation(chisinauAirport);
         problem.addLocation(lukoil);
         problem.addRoad(new Highway(120,120,iasi,chisinau));
-        problem.addRoad(new Highway(120,120,otopeni,iasi));
-        problem.addRoad(new Highway(120,120,iasi,lukoil));
-        problem.addRoad(new Country(120,120,lukoil,chisinau));
-        problem.addRoad(new Highway(120,120,chisinau,chisinauAirport));
-        problem.addRoad(new Express(120,120,iasi,chisinauAirport));
+        problem.addRoad(new Highway(360,120,otopeni,iasi));
+        problem.addRoad(new Highway(110,120,iasi,lukoil));
+        problem.addRoad(new Country(40,120,lukoil,chisinau));
+        problem.addRoad(new Highway(35,120,chisinau,chisinauAirport));
+        problem.addRoad(new Express(30,120,iasi,chisinauAirport));
+        problem.setStart(otopeni);
+        problem.setEnd(chisinauAirport);
         Main app = new Main();
         app.checkInstance(problem);
         app.canReach(chisinau, lukoil, problem);
+        app.canReach(lukoil, chisinauAirport, problem);
+        app.canReach(otopeni, chisinau, problem);
+        Solution solution = new Solution();
+        solution.setRoute(new Location[]{iasi, chisinau, chisinauAirport});
+        System.out.println(solution.computeLength(problem)+" km "+"between "+solution.getRoute()[0].getName()+" and "+solution.getRoute()[solution.getRoute().length-1].getName());
+
+        Algorithm algorithm = new DijkstraAlgorithm(problem);
+        Solution sol = new Solution();
+        sol=algorithm.solve(problem);
+        System.out.println("The shortest path between "+problem.getStart().getName()+" and "+problem.getEnd().getName()+" is: "+sol.toString());
+
 
     }
 
@@ -105,9 +118,9 @@ public class Main{
             }
         }
         if(visited[c2.getId()]){
-            System.out.println("There is a path between the two locations");
+            System.out.println("There is a path between the two locations: "+c1.getName()+" and "+c2.getName());
             return;
         }
-        System.out.println("There is no path between the two locations");
+        System.out.println("There is no path between the two locations: "+c1.getName()+" and "+c2.getName());
     }
 }

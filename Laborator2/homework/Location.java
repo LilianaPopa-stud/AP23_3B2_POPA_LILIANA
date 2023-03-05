@@ -69,8 +69,6 @@ public class Location {
     public String toString() {
         return "Location{" +
                 "name='" + name + '\'' +
-                ", x=" + x +
-                ", y=" + y +
                 '}';
     }
 
