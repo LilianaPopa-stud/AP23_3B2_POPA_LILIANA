@@ -15,6 +15,11 @@ public class Main{
      * @param args This is the array of arguments
      */
     public static void main(String[] args) {
+        System.gc();
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemoryBefore =
+                runtime.totalMemory() - runtime.freeMemory();
+        long initialTime = System.currentTimeMillis();
         Problem problem = new Problem();
         City iasi = new City("Iasi", 20.5, 28.1, 1000000);
         City chisinau = new City("Chisinau", 40, 33.2, 500000);
@@ -48,6 +53,12 @@ public class Main{
         sol=algorithm.solve(problem);
         System.out.println("The shortest path between "+problem.getStart().getName()+" and "+problem.getEnd().getName()+" is: "+sol.toString());
 
+        long runningTime = System.currentTimeMillis() - initialTime;
+        long usedMemoryAfter =
+                runtime.totalMemory() - runtime.freeMemory();
+        long memoryIncrease = usedMemoryAfter - usedMemoryBefore;
+        System.out.println("Running time: " + runningTime + " ms");
+        System.out.println("Memory increase: " + memoryIncrease + " bytes");
 
     }
 
