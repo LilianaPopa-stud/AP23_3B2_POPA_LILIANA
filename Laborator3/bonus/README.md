@@ -11,7 +11,9 @@ Algoritmul initializeaza mai intai map-urile 'discoveryTime', 'low', 'parent' si
 Metoda 'dfs' parcurge graful in adancime, marcand nodurile vizitate si actualizand valorile map-urilor 'discoveryTime', 'low', 'parent' si 'isArticulationPoint'.
 
 Acesta este exemplul de graf pe care l-am folosit pentru testare:
-![Graful](https://i.ibb.co/m08Y05D/Screenshot-2023-03-19-at-00-56-47.png)
+
+![Graful](https://i.ibb.co/RjXSGym/Screenshot-2023-03-19-at-01-37-41.png)
 
 Iar acesta este output-ul:
-![Output-ul](https://i.ibb.co/DrYvqqZ/Screenshot-2023-03-19-at-01-01-22.png)
+
+![Output-ul](https://i.ibb.co/9gy4jvT/Screenshot-2023-03-19-at-01-02-27.png)
