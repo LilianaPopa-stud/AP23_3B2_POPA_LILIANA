@@ -1,15 +1,16 @@
-package homework;
+package bonus;
 
-import homework.commands.*;
-import homework.documents.Document;
-import homework.documents.Image;
-import homework.documents.Video;
-import homework.exceptions.InvalidCatalogException;
+import bonus.commands.*;
+import bonus.documents.Document;
+import bonus.documents.Image;
+import bonus.documents.Video;
+import bonus.exceptions.InvalidCatalogException;
+import org.apache.tika.exception.TikaException;
 
 import java.io.IOException;
+
 public class Main {
     private static final String PATH = "/Users/lilschnapsidee/Documents/Facultate/Anul3_Sem2/Laborator5/Java.json" ;
-
     public static void main(String[] args) {
         Main app = new Main();
         try {
@@ -17,6 +18,7 @@ public class Main {
             app.testLoadView();
             app.getReport();
             app.testList();
+            app.testInfo();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,18 +35,22 @@ public class Main {
         AddCommand.execute(catalog, doc);
         AddCommand.execute(catalog, doc2);
         AddCommand.execute(catalog, doc3);
-        SaveCommand.execute(catalog, "/Users/lilschnapsidee/Documents/Facultate/Anul3_Sem2/Laborator5/Java.json");
+        SaveCommand.execute(catalog, PATH);
     }
-    private void testLoadView() throws InvalidCatalogException, IOException {
-        Catalog catalog = LoadCommand.execute("/Users/lilschnapsidee/Documents/Facultate/Anul3_Sem2/Laborator5/Java.json");
+    private void testLoadView() throws InvalidCatalogException, IOException, TikaException {
+        Catalog catalog = LoadCommand.execute(PATH);
         ViewCommand.execute(catalog, "00001");
     }
-    private void getReport() throws InvalidCatalogException, IOException, InvalidCatalogException {
+    private void getReport() throws InvalidCatalogException, IOException {
         Catalog catalog = LoadCommand.execute(PATH);
         ReportCommand.execute(catalog, "/Users/lilschnapsidee/Documents/Facultate/Anul3_Sem2/Laborator5/Report.html");
     }
     private void testList() throws InvalidCatalogException, IOException {
         Catalog catalog = LoadCommand.execute(PATH);
         ListCommand.execute(catalog);
+    }
+    private void testInfo() throws InvalidCatalogException, IOException, TikaException {
+        Catalog catalog = LoadCommand.execute(PATH);
+        InfoCommand.execute(catalog);
     }
 }

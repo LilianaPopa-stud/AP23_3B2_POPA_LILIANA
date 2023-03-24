@@ -1,6 +1,6 @@
-package homework.commands;
+package bonus.commands;
 
-import homework.Catalog;
+import bonus.Catalog;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
@@ -12,7 +12,7 @@ import java.io.Writer;
  * This class represents the report command.
  * Report: creates (and opens) an HTML report representing the content of the catalog.
  */
-public class ReportCommand implements Command{
+public class ReportCommand implements Command {
     public static void execute(Catalog catalog, String path) throws IOException {
         VelocityEngine engine = new VelocityEngine();
         engine.init();
@@ -24,7 +24,7 @@ public class ReportCommand implements Command{
         engine.mergeTemplate("src/main/resources/templates/template.vm", "UTF-8", context, writer);
         writer.flush();
         writer.close();
-        System.out.println("Report created at " + path);
+        System.out.println("Report created at " + path + "!");
 
     }
 }
