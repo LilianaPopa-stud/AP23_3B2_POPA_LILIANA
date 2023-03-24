@@ -13,15 +13,7 @@ public class Main {
                 .toArray(Student[]::new);
 
         List<Student> listOfStudents = new LinkedList<>(Arrays.asList(students));
-
-
-        // print the students sorted by name
-        // Sorting: Natural order given by implementing Comparable
-        Collections.sort(listOfStudents);
-        System.out.println("Students sorted by name"+ listOfStudents);
-
         var projects = IntStream.rangeClosed(0, 3).mapToObj(i -> new Project("P" + i)).toArray(Project[]::new);
-        //create tree set of projects
         Set<Project> setOfProjects = new TreeSet<>(Arrays.asList(projects));
         setOfProjects.add(new Project("A1"));
         System.out.println("Projects sorted by name"+ setOfProjects);
@@ -32,6 +24,7 @@ public class Main {
         problem.addPref(students[2], List.of(projects[0]));
         Map<Student, List<Project>> map = problem.getPrefMap();
 
+        // display all the students that have fewer preferences than the average
         double avgNumberOfPreferences = map.values().stream().mapToInt(List::size).average().orElse(0);
 
         List<Student> studentsWithFewerPreferences = map.entrySet().stream()
@@ -39,36 +32,40 @@ public class Main {
                 .map(Map.Entry::getKey).toList();
 
         System.out.println("Students with fewer preferences than the average: " + studentsWithFewerPreferences);
-        
+
+        // use the faker library to generate random students and projects and add them to the problem
         Main main = new Main();
         List<Student> randomStudents = main.generateRandomFakeStudents(10);
         List<Project> randomProjects = main.generateRandomFakeProjects(30);
         System.out.println("Random students: " + randomStudents);
         System.out.println("Random projects: " + randomProjects);
 
-        // use the faker library to generate random students and projects and add them to the problem using streams
-        Random random = new Random();
-        Problem problem2 = new Problem();
-        problem2.setStudents(randomStudents);
-        problem2.setProjects(randomProjects);
-        for (int i = 0; i < 10; i++) {
-
-            List<Project> subListOfProjects = randomProjects.subList(0, random.nextInt(29) + 1);
-            problem2.addPref(randomStudents.get(i), subListOfProjects);
-        }
-        System.out.println("Problem: ");
-        for (Map.Entry<Student, List<Project>> entry : problem2.getPrefMap().entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue().size());
-        }
+        Problem problem2 = main.generateRandomProblem(10, 30);
         Algorithm greedyAlgorithm = new GreedyAlgorithm(problem2);
         greedyAlgorithm.solve();
+
+
         Algorithm edmondsKarpMaximumCardinalityMatching = new EdmondsKarpMaximumCardinalityMatching(problem2);
         edmondsKarpMaximumCardinalityMatching.solve();
         System.out.println(edmondsKarpMaximumCardinalityMatching.solve());
 
         Problem bigProblem = main.generateRandomProblem(2000, 2000);
         Algorithm edmondsKarpMaximumCardinalityMatchingBigProblem = new EdmondsKarpMaximumCardinalityMatching(bigProblem);
-        System.out.println(edmondsKarpMaximumCardinalityMatchingBigProblem.solve());
+        // compute time for Edmonds-Karp algorithm
+        edmondsKarpMaximumCardinalityMatchingBigProblem.solve();
+        long startTime = System.currentTimeMillis();
+        edmondsKarpMaximumCardinalityMatchingBigProblem.solve();
+        long endTime = System.currentTimeMillis();
+        float duration = (endTime - startTime)/1000F;
+        System.out.println("Time for Edmonds-Karp algorithm: " + duration + " seconds");
+
+        // compute time for the greedy algorithm
+        startTime = System.currentTimeMillis();
+        Algorithm greedyAlgorithmBigProblem = new GreedyAlgorithm(bigProblem);
+        greedyAlgorithmBigProblem.solve();
+        endTime = System.currentTimeMillis();
+        duration = (endTime - startTime)/1000F;
+        System.out.println("Time for the greedy algorithm: " + duration+ " seconds");
 
 
     }

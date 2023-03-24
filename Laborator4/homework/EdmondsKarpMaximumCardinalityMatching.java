@@ -11,7 +11,6 @@ import java.util.Map;
 
 public class EdmondsKarpMaximumCardinalityMatching implements Algorithm {
     private Problem problem;
-
     public EdmondsKarpMaximumCardinalityMatching(Problem problem) {
         this.problem = problem;
     }

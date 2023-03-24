@@ -54,9 +54,6 @@ public class GreedyAlgorithm implements Algorithm {
         for (Student student : students) {
             result.put(student, student.getAssignedProject());
         }
-        for (Student student : result.keySet())
-            if (result.get(student) != null)
-                System.out.println("Student: " + student.getName() + ", Assigned project - \"" + result.get(student).getName() + "\"");
         return result;
     }
 
