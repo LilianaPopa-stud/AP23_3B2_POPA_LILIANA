@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Catalog</title>
+</head>
+<body>
+<h1> Catalog $name </h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Location</th>
+    </tr>
+    #foreach ( $obj in $documents)
+    <tr>
+        <th>$obj.id</th>
+        <th>$obj.title</th>
+        <th>$obj.location</th>
+    </tr>
+    #end
+</table>
+</body>
+</html>
