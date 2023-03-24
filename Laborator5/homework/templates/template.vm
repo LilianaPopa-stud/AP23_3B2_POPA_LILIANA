@@ -8,13 +8,13 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Title</th>
+        <th>Name</th>
         <th>Location</th>
     </tr>
     #foreach ( $obj in $documents)
     <tr>
         <th>$obj.id</th>
-        <th>$obj.title</th>
+        <th>$obj.name</th>
         <th>$obj.location</th>
     </tr>
     #end
