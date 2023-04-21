@@ -57,6 +57,15 @@ public class Robot implements Runnable {
     public Token extractToken() {
         return explore.getMemory().extractTokens(1).get(0);
     }
+    private int tokensPlaced;
+    public void countTokens() {
+        tokensPlaced++;
+    }
+
+
+    public int getTokensPlaced() {
+        return tokensPlaced;
+    }
 
     /**
      * Runs the robot.
@@ -72,6 +81,7 @@ public class Robot implements Runnable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                Exploration.timeKeeper.stopTimer();
                 return;
             }
             Cell cell = unexploredCells.get(0);
@@ -99,6 +109,11 @@ public class Robot implements Runnable {
                     pause(pausedTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                }
+            }
+            if (explore.getMemory().getTokens().size() == 0) {
+                for (Robot robot : Exploration.robots) {
+                    System.out.printf("Robot %s placed %d tokens.%n", robot.getName(), robot.getTokensPlaced());
                 }
             }
         }

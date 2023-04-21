@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ExplorationMap {
@@ -36,6 +37,7 @@ public class ExplorationMap {
             if (cell.getTokens().isEmpty()) {
                 for (int i = 0; i < size; i++) {
                     Token token = robot.extractToken();
+                    robot.countTokens();
                     if (token == null) {
                         break;
                     }
@@ -87,6 +89,7 @@ public class ExplorationMap {
                 }
             }
         }
+        Collections.shuffle(unexploredCells);
         return unexploredCells;
     }
 
