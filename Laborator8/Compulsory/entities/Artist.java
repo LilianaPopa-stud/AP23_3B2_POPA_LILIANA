@@ -1,0 +1,27 @@
+package entities;
+
+public class Artist extends ModelObject {
+    private int id;
+    private String name;
+
+    public Artist(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
