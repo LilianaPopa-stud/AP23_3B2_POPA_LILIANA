@@ -1,20 +1,28 @@
-package entities;
+package jdbc.entities;
 
-public class Genre extends ModelObject {
-    private int id;
+public class Genre {
+    private Integer id;
     private String name;
 
-    public Genre(int id, String name) {
+    public Genre(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -1,5 +1,8 @@
 package database;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.sql.*;
 public class Database {
     private static final String URL =
@@ -7,6 +10,18 @@ public class Database {
     private static final String USER = "postgres";
     private static final String PASSWORD = "password";
     private static Connection connection = null;
+    private static HikariDataSource dataSource;
+
+    public static HikariDataSource getDataSource() {
+        if (dataSource == null) {
+            HikariConfig config = new HikariConfig();
+            config.setJdbcUrl(URL);
+            config.setUsername(USER);
+            config.setPassword(PASSWORD);
+            dataSource = new HikariDataSource(config);
+        }
+        return dataSource;
+    }
     private Database() {}
     public static Connection getConnection() {
         if (connection == null) {

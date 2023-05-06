@@ -1,9 +1,9 @@
-package dao;
+package jdbc.dao;
 import database.Database;
 import java.sql.*;
 public class ArtistDAO {
     public void create(String name) throws SQLException {
-        Connection con = Database.getConnection();
+        Connection con = Database.getDataSource().getConnection();
         //daca numele artistului exista deja in baza de date, nu se mai adauga
         if(findByName(name) != null) {
             return;
