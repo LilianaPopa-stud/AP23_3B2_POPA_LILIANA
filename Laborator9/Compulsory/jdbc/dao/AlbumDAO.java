@@ -5,10 +5,20 @@ import database.Database;
 import java.sql.*;
 
 public class AlbumDAO {
+
+    /**
+     * Creates an album in the database
+     *
+     * @param releaseYear the year the album was released
+     * @param title       the title of the album
+     * @param artistName  the name of the artist
+     * @param genreName   the name of the genre
+     * @throws SQLException
+     */
     public void create(int releaseYear, String title, String artistName, String genreName) throws SQLException {
         Connection con = Database.getDataSource().getConnection();
         //daca numele albumului exista deja in baza de date, nu se mai adauga
-        if(findByName(title) != null) {
+        if (findByName(title) != null) {
             return;
         }
         try (PreparedStatement pstmt = con.prepareStatement(
@@ -20,6 +30,14 @@ public class AlbumDAO {
             pstmt.executeUpdate();
         }
     }
+
+    /**
+     * Finds an album by its name
+     *
+     * @param name the name of the album
+     * @return the id of the album
+     * @throws SQLException
+     */
     public Integer findByName(String name) throws SQLException {
         Connection con = Database.getConnection();
         try (Statement stmt = con.createStatement();
@@ -28,6 +46,14 @@ public class AlbumDAO {
             return rs.next() ? rs.getInt(1) : null;
         }
     }
+
+    /**
+     * Finds an album by its id
+     *
+     * @param id the id of the album
+     * @return the name of the album
+     * @throws SQLException
+     */
     public String findById(int id) throws SQLException {
         Connection con = Database.getConnection();
         try (Statement stmt = con.createStatement();

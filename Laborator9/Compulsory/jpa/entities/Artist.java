@@ -24,6 +24,4 @@ public class Artist implements Serializable {
 
     @Column(name = "name")
     private String name;
-    //constructors, getters, setters, toString
-
 }

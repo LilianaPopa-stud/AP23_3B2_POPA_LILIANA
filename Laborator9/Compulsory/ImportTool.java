@@ -20,6 +20,12 @@ public class ImportTool {
         this.csvPath = csvPath;
     }
 
+    /**
+     * Reads the CSV file and populates the albums, artists and genres lists
+     *
+     * @throws IOException
+     * @throws CsvValidationException
+     */
     public void importData() throws IOException, CsvValidationException {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("albumlist.csv").getFile());
@@ -30,32 +36,32 @@ public class ImportTool {
         int albumId = 0;
         int artistId = 0;
         int genreId = 0;
-        int k=0;
+        int k = 0;
         while ((nextRecord = csvReader.readNext()) != null) {
-           if (k != 0) { //first line is header
-               String albumYear = nextRecord[1];
-               String albumTitle = nextRecord[2];
-               String albumArtist = nextRecord[3];
-               String albumGenre = nextRecord[4];
+            if (k != 0) { //first line is header
+                String albumYear = nextRecord[1];
+                String albumTitle = nextRecord[2];
+                String albumArtist = nextRecord[3];
+                String albumGenre = nextRecord[4];
 
-               Album album = new Album(albumId, albumYear, albumTitle, albumArtist, albumGenre);
-               if (!albums.contains(album)) {
-                   albums.add(album);
-                   albumId++;
-               }
-               Artist artist = new Artist(artistId, albumArtist);
-               if (!artists.contains(artist)) {
-                   artists.add(artist);
-                   artistId++;
-               }
-               Genre genre = new Genre(genreId, albumGenre);
-               if (!genres.contains(genre)) {
-                   genres.add(genre);
-                   genreId++;
-               }
-           }
-         k++;
-    }
+                Album album = new Album(albumId, albumYear, albumTitle, albumArtist, albumGenre);
+                if (!albums.contains(album)) {
+                    albums.add(album);
+                    albumId++;
+                }
+                Artist artist = new Artist(artistId, albumArtist);
+                if (!artists.contains(artist)) {
+                    artists.add(artist);
+                    artistId++;
+                }
+                Genre genre = new Genre(genreId, albumGenre);
+                if (!genres.contains(genre)) {
+                    genres.add(genre);
+                    genreId++;
+                }
+            }
+            k++;
+        }
         csvReader.close();
         fileReader.close();
     }
@@ -90,11 +96,4 @@ public class ImportTool {
         }
     }
 
-    public static void main(String[] args) throws IOException, CsvValidationException {
-        ImportTool importTool = new ImportTool("albumlist.csv");
-        importTool.importData();
-        importTool.printAlbums();
-        importTool.printArtists();
-        importTool.printGenres();
-    }
 }

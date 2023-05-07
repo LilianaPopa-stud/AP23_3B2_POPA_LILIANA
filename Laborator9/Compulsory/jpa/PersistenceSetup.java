@@ -8,6 +8,9 @@ public class PersistenceSetup{
 
     private PersistenceSetup() {}
 
+    /**
+     * @return an EntityManagerFactory
+     */
     public static synchronized EntityManagerFactory getInstance() {
         if (emfInstance == null) {
             emfInstance = Persistence.createEntityManagerFactory("myPersistenceUnit");

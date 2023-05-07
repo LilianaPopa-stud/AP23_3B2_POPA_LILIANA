@@ -61,17 +61,17 @@ public class Main {
         } */
 
         try {
-            // Obține o conexiune din pool-ul HikariCP
+            // obține o conexiune din pool-ul HikariCP
             Connection connection = Database.getDataSource().getConnection();
 
-            // Verifică dacă conexiunea este deschisă
+            // verifica dacă conexiunea este deschisa
             if (connection.isValid(1)) {
                 System.out.println("Conexiunea la baza de date funcționează corect!");
             } else {
                 System.out.println("Conexiunea la baza de date este invalidă!");
             }
 
-            // Închide conexiunea
+            // inchide conexiunea
             connection.close();
         } catch (SQLException e) {
             System.err.println("Eroare la conectarea la baza de date: " + e.getMessage());

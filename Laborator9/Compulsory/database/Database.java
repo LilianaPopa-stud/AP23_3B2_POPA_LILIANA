@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.*;
+
 public class Database {
     private static final String URL =
             "jdbc:sqlite:db\\database.db";
@@ -12,6 +13,9 @@ public class Database {
     private static Connection connection = null;
     private static HikariDataSource dataSource;
 
+    /**
+     * @return a connection to the database
+     */
     public static HikariDataSource getDataSource() {
         if (dataSource == null) {
             HikariConfig config = new HikariConfig();
@@ -22,13 +26,23 @@ public class Database {
         }
         return dataSource;
     }
-    private Database() {}
+
+    private Database() {
+    }
+
+    /**
+     * @return a connection to the database
+     */
     public static Connection getConnection() {
         if (connection == null) {
             createConnection();
         }
         return connection;
     }
+
+    /**
+     * Creates a connection to the database
+     */
     private static void createConnection() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -37,6 +51,10 @@ public class Database {
             System.err.println(e);
         }
     }
+
+    /**
+     * Closes the connection to the database
+     */
     public static void closeConnection() {
         try {
             connection.close();
@@ -45,6 +63,9 @@ public class Database {
         }
     }
 
+    /**
+     * Commits the changes made to the database
+     */
     public static void rollback() {
         try {
             connection.rollback();
